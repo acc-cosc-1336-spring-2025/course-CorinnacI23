@@ -1,11 +1,8 @@
-# run_tests.py
-
+# tests/run_tests.py
 import unittest
-from tests.homework.d_repetition import tests_repetition
+from tests.homework.e_functions import test_functions
 
-suite = unittest.TestLoader().loadTestsFromModule(tests_repetition)
+suite = unittest.TestLoader().loadTestsFromModule(test_functions)
+unittest.TextTestRunner().run(suite)
 
-if __name__ == '__main__':
-    runner = unittest.TextTestRunner()
-    runner.run(suite)
 
