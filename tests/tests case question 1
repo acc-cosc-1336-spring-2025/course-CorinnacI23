@@ -1,0 +1,3 @@
+# Test case
+result = get_miles_per_hour(32, 60)
+print(result)  # Expected output: 19.883872

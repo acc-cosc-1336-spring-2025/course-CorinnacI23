@@ -1,0 +1,13 @@
+def get_miles_per_hour(kilometers, minutes):
+    # Check for invalid negative arguments
+    if kilometers < 0 or minutes < 0:
+        return 'Invalid arguments'
+
+    # Conversion factor from kilometers to miles
+    conversion_ratio = 0.621371
+    
+    # Calculate miles per hour
+    miles = kilometers * conversion_ratio
+    miles_per_hour = miles / (minutes / 60)  # Convert minutes to hours
+
+    return miles_per_hour
