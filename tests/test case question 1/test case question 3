@@ -1,0 +1,6 @@
+def test_use_local_variable():
+    num = 100  # Variable outside the function
+    use_local_variable(num)  # Call the function with num as the argument
+    
+    # Show that the value of num outside the function remains unchanged
+    print(f"The value of num after calling the function: {num}")  # Expected: 100

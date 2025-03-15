@@ -1,0 +1,10 @@
+def test_get_random_number():
+    # Test the get_random_number function to ensure it returns values between 1 and 5
+    for _ in range(10):  # Run 10 tests
+        num = get_random_number()
+        print(f"Generated number: {num}")
+        assert 1 <= num <= 5, f"Error: {num} is out of range"
+    print("All tests passed!")
+
+# Test the function
+test_get_random_number()

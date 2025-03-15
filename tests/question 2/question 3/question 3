@@ -1,0 +1,4 @@
+def use_local_variable(num):
+    # Local variable num inside the function
+    num = 10
+    # The function does not return anything
