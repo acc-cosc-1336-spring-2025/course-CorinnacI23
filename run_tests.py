@@ -1,8 +1,11 @@
-# tests/run_tests.py
 import unittest
-from tests.homework.e_functions import test_functions
+'''
+the file in /tests/homework/b_in_proc_out/tests_in_proc_out
+has the test functions
+'''
+from tests.homework.g_lists_and_tuples import tests_lists_and_tuples
 
-suite = unittest.TestLoader().loadTestsFromModule(test_functions)
-unittest.TextTestRunner().run(suite)
+suite = unittest.TestLoader().loadTestsFromModule(tests_lists_and_tuples)
+unittest.TextTestRunner(verbosity=2).run(suite)
 
 
