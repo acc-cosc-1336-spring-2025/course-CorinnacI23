@@ -1,5 +1,5 @@
 import unittest
-from src.homework.g_lists_and_tuples import get_lowest_list_value, get_highest_list_value
+from src.homework.g_lists_and_tuples.lists import get_lowest_list_value, get_highest_list_value
 
 
 class TestListValues(unittest.TestCase):
