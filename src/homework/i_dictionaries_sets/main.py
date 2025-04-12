@@ -1,34 +1,37 @@
-from dictionary import get_p_distance_matrix
+from dictionary import add_inventory, remove_inventory_widget
+
+
+
+def display_menu():
+    """Displays the inventory menu."""
+    print("\nInventory Menu")
+    print("1- Add or Update Item")
+    print("2- Delete Item")
+    print("3- Exit")
 
 def main():
+    inventory = {}
     while True:
-        # Display the menu
-        print("1- Get p-distance matrix")
-        print("2- Exit")
+        display_menu()
+        choice = input("Choose an option (1-3): ")
+
+        if choice == '1':  # Add or Update Item
+            widget_name = input("Enter widget name: ")
+            quantity = int(input("Enter quantity: "))
+            add_inventory(inventory, widget_name, quantity)
+            print(f"Inventory updated: {widget_name} = {inventory[widget_name]}")
         
-        # Get the user's choice
-        choice = input("Enter your choice: ")
+        elif choice == '2':  # Delete Item
+            widget_name = input("Enter widget name to delete: ")
+            message = remove_inventory_widget(inventory, widget_name)
+            print(message)
         
-        if choice == '1':
-            # Prompt the user to enter the DNA sequences
-            print("Please enter the DNA sequences (separated by commas):")
-            input_sequences = input().split(',')
-            dna_sequences = [list(seq.strip()) for seq in input_sequences]
-            
-            # Get the p-distance matrix
-            p_distance_matrix = get_p_distance_matrix(dna_sequences)
-            
-            # Display the matrix
-            for row in p_distance_matrix:
-                print(' '.join(f"{x:.5f}" for x in row))
-        
-        elif choice == '2':
-            print("Exiting the program.")
+        elif choice == '3':  # Exit
+            print("Exiting inventory system.")
             break
+        
         else:
-            print("Invalid choice. Please choose again.")
+            print("Invalid choice, please try again.")
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()
-
-

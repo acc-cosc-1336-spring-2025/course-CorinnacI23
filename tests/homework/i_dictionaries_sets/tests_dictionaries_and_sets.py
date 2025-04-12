@@ -1,31 +1,36 @@
+# tests/homework/i_dictionaries_and_sets/test_dictionaries_and_sets.py
+
 import unittest
-from src.homework.i_dictionaries_sets.dictionary import get_p_distance, get_p_distance_matrix
+from src.homework.i_dictionaries_sets.dictionary import add_inventory, remove_inventory_widget
 
 class Test_Config(unittest.TestCase):
+    
+    def setUp(self):
+        """Setup an initial inventory dictionary for testing."""
+        self.inventory = {}
 
-    def test_get_p_distance(self):
-        # Test the p-distance between two DNA sequences
-        list1 = ['T', 'T', 'T', 'C', 'C', 'A', 'T', 'T', 'T', 'A']
-        list2 = ['G', 'A', 'T', 'T', 'C', 'A', 'T', 'T', 'T', 'C']
-        result = get_p_distance(list1, list2)
-        self.assertAlmostEqual(result, 0.4, places=5)  # Check if result is approximately 0.4
+    def test_add_inventory(self):
+        """Test the add_inventory function."""
+        add_inventory(self.inventory, 'Widget1', 10)
+        self.assertEqual(self.inventory['Widget1'], 10)  # Assert Widget1 is added with quantity 10
 
-    def test_get_p_distance_matrix(self):
-        # Test the p-distance matrix for a set of DNA sequences
-        dna_sequences = [
-            ['T', 'T', 'T', 'C', 'C', 'A', 'T', 'T', 'T', 'A'],
-            ['G', 'A', 'T', 'T', 'C', 'A', 'T', 'T', 'T', 'C'],
-            ['T', 'T', 'T', 'C', 'C', 'A', 'T', 'T', 'T', 'T'],
-            ['G', 'T', 'T', 'C', 'C', 'A', 'T', 'T', 'T', 'A']
-        ]
-        expected_matrix = [
-            [0.0, 0.4, 0.1, 0.1],
-            [0.4, 0.0, 0.4, 0.3],
-            [0.1, 0.4, 0.0, 0.2],
-            [0.1, 0.3, 0.2, 0.0]
-        ]
-        result = get_p_distance_matrix(dna_sequences)
-        self.assertEqual(result, expected_matrix)
+        add_inventory(self.inventory, 'Widget1', 25)
+        self.assertEqual(self.inventory['Widget1'], 35)  # Assert quantity updated to 35
 
-if __name__ == '__main__':
-    unittest.main()
+        add_inventory(self.inventory, 'Widget1', -10)
+        self.assertEqual(self.inventory['Widget1'], 25)  # Assert quantity updated to 25
+
+    def test_remove_inventory_widget(self):
+        """Test the remove_inventory_widget function."""
+        add_inventory(self.inventory, 'Widget1', 10)
+        add_inventory(self.inventory, 'Widget2', 20)
+
+        result = remove_inventory_widget(self.inventory, 'Widget1')
+        self.assertEqual(result, 'Record deleted')  # Assert widget1 is deleted
+
+        self.assertEqual(len(self.inventory), 1)  # Assert only 1 widget remains
+        self.assertIn('Widget2', self.inventory)  # Assert Widget2 still exists
+
+        result = remove_inventory_widget(self.inventory, 'Widget1')
+        self.assertEqual(result, 'Item not found')  # Assert trying to delete again returns 'Item not found'
+

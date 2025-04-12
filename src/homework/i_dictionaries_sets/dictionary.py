@@ -1,25 +1,32 @@
-def get_p_distance(list1, list2):
-    # Ensure both lists are of the same length
-    if len(list1) != len(list2):
-        raise ValueError("DNA strings must be of the same length.")
-    
-    # Count the number of differing symbols
-    differences = sum(1 for a, b in zip(list1, list2) if a != b)
-    
-    # Return the proportion of differing positions (p-distance)
-    return differences / len(list1)
+# src/homework/i_dictionaries_and_sets/dictionary.py
 
-def get_p_distance_matrix(dna_sequences):
-    n = len(dna_sequences)
-    p_distance_matrix = []
-
-    # Calculate the p-distance between all pairs of DNA sequences
-    for i in range(n):
-        row = []
-        for j in range(n):
-            # Calculate p-distance between sequence i and j
-            p_distance = get_p_distance(dna_sequences[i], dna_sequences[j])
-            row.append(round(p_distance, 5))  # Round to 5 decimal places
-        p_distance_matrix.append(row)
+def add_inventory(widgets, widget_name, quantity):
+    """
+    Adds a widget to the inventory if it doesn't exist.
+    If it exists, it updates the quantity.
     
-    return p_distance_matrix
+    :param widgets: Dictionary containing the inventory items.
+    :param widget_name: The name of the widget to add or update.
+    :param quantity: The quantity of the widget to add or update.
+    """
+    if widget_name in widgets:
+        widgets[widget_name] += quantity  # Update the existing widget's quantity
+    else:
+        widgets[widget_name] = quantity  # Add a new widget to the inventory
+
+# src/homework/i_dictionaries_and_sets/dictionary.py
+
+def remove_inventory_widget(widgets, widget_name):
+    """
+    Removes a widget from the inventory.
+    
+    :param widgets: Dictionary containing the inventory items.
+    :param widget_name: The name of the widget to remove.
+    :return: A message indicating whether the widget was deleted or not found.
+    """
+    if widget_name in widgets:
+        del widgets[widget_name]
+        return 'Record deleted'
+    else:
+        return 'Item not found'
+
