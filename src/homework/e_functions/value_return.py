@@ -1,5 +1,3 @@
-# src/homework/e_functions/value_return.py
-
 def get_hour(epoch_seconds):
     """Return the hour from epoch_seconds."""
     return epoch_seconds // 3600
